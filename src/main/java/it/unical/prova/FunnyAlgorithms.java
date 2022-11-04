@@ -69,8 +69,26 @@ public class FunnyAlgorithms {
 	 * @return
 	 * @throws UnsupportedOperationException
 	 */
-	public int stringToIntConverter(String number) throws UnsupportedOperationException {
-		throw new UnsupportedOperationException("To be implemented");
+	public int stringToIntConverterParseInt(String number) throws NumberFormatException {
+
+		// Non è il formato che ci aspettiamo
+		if (!number.matches("^-?[1-9][0-9]+\\s*$")) {
+			throw new NumberFormatException("Il formato non è corretto.");
+		}
+		number = number.trim();
+
+		// In questo caso viene lanciata NumberFormatException
+		// se il numero e minore o maggiore di quello ammesso da int
+		// Potevate usare try-catch nel caso volvate mettere una messaggio
+		// personalizzato
+		// o lanciare la vostra Exception personalizata
+		int value = Integer.parseInt(number);
+
+		// Controllo del range
+		if (value < -32768 || value > 32767) {
+			throw new NumberFormatException("Fuori rango.");
+		}
+		return value;
 	}
 
 }
